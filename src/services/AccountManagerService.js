@@ -1,22 +1,22 @@
-const connectToSQLServer = require('../config/database')
+const db = require('../models/index');
 //CRUD:
 
-async function queryAccounts(query) {
+const getAccountService = (userId) => new Promise(async (resolve, reject) => {
     try {
-        const pool = await connectToSQLServer(); // Lấy đối tượng kết nối
-
-        // Thực hiện truy vấn
-        const result = await pool.request().query(query);
-        return result.recordset; // Trả về kết quả nếu cần
-    } catch (err) {
-        console.error("Lỗi khi thực hiện truy vấn:", err);
-        throw err; // Quăng lỗi để xử lý ở nơi gọi hàm
+        const response = await db.User.findOne({
+            where: { id: userId },
+        })
+        resolve({
+            err: response ? 0 : 1,
+            message: response ? 'Get successfull' : 'User not found',
+            UserData: response
+        });
+    } catch (error) {
+        reject(error)
     }
-}
-
-
+})
 
 
 module.exports = {
-    queryAccounts,
+    getAccountService,
 };

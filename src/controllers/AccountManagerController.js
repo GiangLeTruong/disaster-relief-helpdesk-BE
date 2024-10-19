@@ -1,11 +1,17 @@
-const { queryAccounts } = require('../services/AccountManagerService');
-
+const { getAccountService,
+} = require('../services/AccountManagerService');
+const { ApiError,
+    HttpStatus } = require('../config/ApiError');
 const getAccounts = async (req, res) => {
     try {
-        const data = await queryAccounts('SELECT * FROM Users'); // Sử dụng queryDatabase
-        return res.json(data); // Trả về kết quả dưới dạng JSON
+        const { id } = req.user
+        const response = await getAccountService(id)
+        return res.status(200).json(response)
     } catch (err) {
-        res.status(500).json({ message: "Lỗi khi truy vấn cơ sở dữ liệu", error: err.message });
+        return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+            code: ApiError.API_ERROR_000_INTERNAL_SERVER_ERROR.status,
+            message: ApiError.API_ERROR_000_INTERNAL_SERVER_ERROR.message
+        });
     }
 };
 

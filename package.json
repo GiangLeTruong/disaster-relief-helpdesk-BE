@@ -14,13 +14,17 @@
   "author": "GiangLe",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "5.1.1",
     "dotenv": "16.4.5",
     "ejs": "3.1.10",
     "express": "4.21.0",
+    "jsonwebtoken": "9.0.2",
     "mssql": "11.0.1",
-    "mysql2": "3.11.3"
+    "mysql2": "3.11.3",
+    "sequelize": "6.37.4"
   },
   "devDependencies": {
-    "nodemon": "3.1.7"
+    "nodemon": "3.1.7",
+    "sequelize-cli": "^6.6.2"
   }
 }

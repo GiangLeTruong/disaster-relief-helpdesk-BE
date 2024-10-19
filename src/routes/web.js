@@ -5,7 +5,7 @@ const router = express.Router()
 
 //router.Method('/route',handler)
 router.get('/', getHomepage)
-router.get('/about', getAbout);
+//router.get('/about', getAbout);
 
 module.exports = router
 
