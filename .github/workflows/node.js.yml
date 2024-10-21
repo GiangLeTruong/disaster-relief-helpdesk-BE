@@ -1,0 +1,36 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Set up environment variables
+      run: |
+        echo "SERVER_PORT=${{ secrets.SERVER_PORT }}" >> .env
+        echo "SERVER_HOST_NAME=${{ secrets.SERVER_HOST_NAME }}" >> .env
+        echo "DB_HOST_URL=${{ secrets.DB_HOST_URL }}" >> .env
+        echo "SERVER_HOST_DB_USER=${{ secrets.SERVER_HOST_DB_USER }}" >> .env
+        echo "SERVER_HOST_DB_PASSWORD=${{ secrets.SERVER_HOST_DB_PASSWORD }}" >> .env
+        echo "SERVER_HOST_DB_NAME=${{ secrets.SERVER_HOST_DB_NAME }}" >> .env
+        echo "SERVER_JSWTOKEN=${{ secrets.SERVER_JSWTOKEN }}" >> .env
+    - run: npm ci
+    - run: npm run server
+    - run: npm test
