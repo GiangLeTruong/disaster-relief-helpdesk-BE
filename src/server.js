@@ -15,7 +15,7 @@ configViewEngine(app);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //Route:
-app.ue('/', webRouters);
+app.use('/', webRouters);
 app.use('/api', apiRouters);
 
 app.listen(port, hostname, () => {
