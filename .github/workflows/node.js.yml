@@ -32,5 +32,5 @@ jobs:
         echo "SERVER_HOST_DB_NAME=${{ secrets.SERVER_HOST_DB_NAME }}" >> .env
         echo "SERVER_JSWTOKEN=${{ secrets.SERVER_JSWTOKEN }}" >> .env
     - run: npm ci
-    - run: npm run server
+    - run: npm run start
     - run: npm test
