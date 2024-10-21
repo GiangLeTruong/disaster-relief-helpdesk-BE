@@ -22,3 +22,5 @@ app.listen(port, hostname, () => {
     console.log(`Example app listening on port ${port}`)
     console.log(`Ctrl + click to open http://localhost:${port}/`)
 })
+
+module.exports = app;

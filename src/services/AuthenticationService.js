@@ -52,10 +52,10 @@ const loginService = ({ email, password }) => new Promise(async (resolve, reject
                 role_id: response.role_id
             }
             , process.env.SERVER_JSWTOKEN
-            , { expiresIn: '5d' }) : null;
+            , { expiresIn: '1d' }) : null;
         resolve({
             err: token ? 0 : 1,
-            message: token ? 'Login successfull' : response ? 'Password is wrong' : 'Email has been registered',
+            message: token ? 'Login successfull' : response ? 'Password is wrong' : 'Email is wrong',
             Access_Token: token
         });
     } catch (error) {
