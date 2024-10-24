@@ -1,11 +1,11 @@
 const getHomepage = async (req, res) => {
     //Process data -> call model
-    res.render('Home.ejs')
+    res.render('Home')
 
 }
 const getAbout = (req, res) => {
     //Process data -> call model
-    res.render('sample.ejs')
+    res.render('sample')
 }
 
 module.exports = {
