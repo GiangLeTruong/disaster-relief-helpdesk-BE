@@ -8,7 +8,13 @@ const getAbout = (req, res) => {
     res.render('sample.ejs')
 }
 
+const getMap = (req, res) => {
+    //Process data -> call model
+    res.render('HeatMap.ejs')
+}
+
 module.exports = {
     getHomepage,
-    getAbout
+    getAbout,
+    getMap
 }
